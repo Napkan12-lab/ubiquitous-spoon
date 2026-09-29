@@ -7,9 +7,10 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "name": "North Star Bakery (Chrome)",
+            "url": "http://localhost:8000/north-star-bakery0.1/",
+            "webRoot": "${workspaceFolder}/north-star-bakery0.1",
+            "preLaunchTask": "Serve North Star Bakery"
         }
     ]
 }

@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Serve North Star Bakery",
+            "type": "process",
+            "command": "sh",
+            "args": [
+                "-c",
+                "if curl -fsS http://127.0.0.1:8000/north-star-bakery0.1/ >/dev/null; then printf 'Serving HTTP on 127.0.0.1 port 8000 (existing server)\\n'; else exec python3 -m http.server 8000 --bind 0.0.0.0 --directory \"$1\"; fi",
+                "serve-bakery",
+                "${workspaceFolder}"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^Serving HTTP on",
+                    "endsPattern": "^Serving HTTP on .* port 8000"
+                }
+            }
+        }
+    ]
+}
