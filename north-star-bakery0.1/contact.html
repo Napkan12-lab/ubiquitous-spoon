@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>North Star Bakery | Contact</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -35,7 +36,7 @@
             contact you with additional information.
         </p>
 
-        <form action="#" method="post">
+        <form action="#" method="post" novalidate>
 
             <fieldset>
                 <legend>Customer Information</legend>
@@ -46,7 +47,9 @@
                            id="name"
                            name="name"
                            required
-                           minlength="2">
+                              minlength="2"
+                              aria-describedby="name-error">
+                          <span class="field-error" id="name-error"></span>
                 </p>
 
                 <p>
@@ -54,7 +57,9 @@
                     <input type="email"
                            id="email"
                            name="email"
-                           required>
+                              required
+                              aria-describedby="email-error">
+                          <span class="field-error" id="email-error"></span>
                 </p>
             </fieldset>
 
@@ -66,19 +71,23 @@
                     <input type="date"
                            id="pickup-date"
                            name="pickup-date"
-                           required>
+                              required
+                              aria-describedby="pickup-date-error">
+                          <span class="field-error" id="pickup-date-error"></span>
                 </p>
 
                 <p>
                     <label for="request-type">Request Type:</label>
                     <select id="request-type"
                             name="request-type"
-                            required>
+                            required
+                            aria-describedby="request-type-error">
                         <option value="">Please select one</option>
                         <option value="pre-order">Pre-Order</option>
                         <option value="general-question">General Question</option>
                         <option value="event-order">Event Order</option>
                     </select>
+                    <span class="field-error" id="request-type-error"></span>
                 </p>
 
                 <p>
@@ -90,7 +99,9 @@
                               cols="50"
                               required
                               minlength="5"
+                              aria-describedby="item-details-error"
                               placeholder="Tell us what you would like to order or ask about."></textarea>
+                    <span class="field-error" id="item-details-error"></span>
                 </p>
 
                 <p>
@@ -110,6 +121,7 @@
                 <button type="submit">Submit Request</button>
                 <button type="reset">Clear Form</button>
             </p>
+            <p class="form-status" role="status" aria-live="polite"></p>
 
         </form>
     </section>

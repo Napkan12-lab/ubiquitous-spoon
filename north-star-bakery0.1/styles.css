@@ -80,6 +80,12 @@ nav a:focus-visible {
     text-decoration-color: var(--peach);
 }
 
+nav a[aria-current="page"] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--peach);
+    text-underline-offset: 0.3em;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -160,6 +166,27 @@ main > section:has(> article) > h2 {
     margin-bottom: 0;
 }
 
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1.25rem 0 0;
+}
+
+.category-filters button {
+    background: transparent;
+    color: var(--brown);
+}
+
+.category-filters button[aria-pressed="true"] {
+    background: var(--brown);
+    color: var(--cream);
+}
+
+[hidden] {
+    display: none !important;
+}
+
 article {
     flex: 1 1 15rem;
     min-width: 0;
@@ -216,6 +243,22 @@ textarea {
 textarea {
     min-height: 8rem;
     resize: vertical;
+}
+
+.field-error {
+    display: block;
+    min-height: 1.5em;
+    color: var(--brown);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+[aria-invalid="true"] {
+    border-width: 2px;
+}
+
+.form-status {
+    font-weight: 700;
 }
 
 input:focus-visible,
