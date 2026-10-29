@@ -49,6 +49,38 @@
         return;
     }
 
+    const formStorageKey = "north-star-bakery-contact-form";
+
+    function saveForm() {
+        const formData = {};
+        Array.from(form.elements).forEach(function (element) {
+            if (element.name) {
+                formData[element.name] = element.value;
+            }
+        });
+
+        try {
+            localStorage.setItem(formStorageKey, JSON.stringify(formData));
+        } catch (error) {
+            // The form still works when browser storage is unavailable.
+        }
+    }
+
+    try {
+        const savedForm = JSON.parse(localStorage.getItem(formStorageKey) || "{}");
+        Object.keys(savedForm).forEach(function (name) {
+            const element = form.elements.namedItem(name);
+            if (element) {
+                element.value = savedForm[name];
+            }
+        });
+    } catch (error) {
+        // Use an empty form if saved browser data is unavailable or invalid.
+    }
+
+    form.addEventListener("input", saveForm);
+    form.addEventListener("change", saveForm);
+
     const fields = [
         {
             input: form.querySelector("#name"),
@@ -146,5 +178,10 @@
             field.input.setAttribute("aria-invalid", "false");
         });
         status.textContent = "";
+        try {
+            localStorage.removeItem(formStorageKey);
+        } catch (error) {
+            // The form can still be reset when browser storage is unavailable.
+        }
     });
 })();
